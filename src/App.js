@@ -14,10 +14,7 @@ function App() {
   const [isRecording, setIsRecording] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [isResult, setIsResult] = useState(false);
-
-  React.useEffect(() => {
-    return () => stopCounter();
-  }, []);
+  
 
   const stopRecording = () => {
     setRecordState(RecordState.STOP);
