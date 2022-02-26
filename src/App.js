@@ -13,7 +13,7 @@ function App() {
   const [recordState, setRecordState] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
-  const [isResult,setIsResult] =useState(false);
+  const [isResult, setIsResult] = useState(false);
 
   React.useEffect(() => {
     return () => stopCounter();
@@ -48,10 +48,10 @@ function App() {
   };
 
   const stopCounter = () => {
-    setTimeout(function(){
+    setTimeout(function () {
       stopRecording();
       setIsRecording(false);
-    },200)
+    }, 200)
 
   };
   return (
@@ -63,14 +63,14 @@ function App() {
         <div className='header'></div>
         <div className='output'>
           {isRecording && (<Recording />)}
-          {isSearching && (<Searching/>)}
-          {isResult && <Results data={data}/>}
+          {isSearching && (<Searching />)}
+          {isResult && <Results data={data} />}
         </div>
         <div className="controls">
-        <i onMouseDown={startCounter}
-        onMouseUp={stopCounter}
-        onMouseEnter={startCounter}
-        onMouseLeave={stopCounter} className={isRecording?'recording fa  fa-microphone icon':'fa  fa-microphone icon' }></i>
+          {!isRecording && !isSearching && (<i onClick={startCounter}
+            className="fa  fa-microphone icon"></i>)}
+         {isRecording &&  ( <i onClick={stopCounter}
+            className="recording fa  fa-stop icon"></i>)}
         </div>
       </main>
     </div>
