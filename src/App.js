@@ -49,9 +49,7 @@ function App() {
     console.log('Data from API', data);
     setIsSearching(false);
     setIsResult(true);
-    setData(data.message);
-    let res = matchContent(data.message);
-    console.log('res', res);
+    setData(data);
   }
 
   const startCounter = () => {
