@@ -5,6 +5,7 @@ import axios from "axios";
 import Recording from './components/Recording';
 import Searching from './components/Searching';
 import Results from './components/Results';
+import TextToSpeech from './components/TextToSpeech';
 
 
 
@@ -14,6 +15,8 @@ function App() {
   const [isRecording, setIsRecording] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [isResult, setIsResult] = useState(false);
+  const[playSound,setPlaySound] = useState(false);
+  
   
 
   const stopRecording = () => {
@@ -30,7 +33,7 @@ function App() {
     dt.append('audio', wavefilefromblob)
     setIsSearching(true);
     setIsRecording(false);
-    const { data } = await axios.post("https://rw-proxy.herokuapp.com/https://mbaza.dev.cndp.org.rw/deepspeech/api/api/v1/stt/http", dt);
+    const { data } = await axios.post("http://localhost:5000/playSentence", dt);
     console.log('Data from API', data);
     setIsSearching(false);
     setIsResult(true);
@@ -62,12 +65,14 @@ function App() {
           {isRecording && (<Recording />)}
           {isSearching && (<Searching />)}
           {isResult && <Results data={data} />}
+          <TextToSpeech data={data} canPlay={playSound} setCanPlay={(f)=>setPlaySound(f)} />
         </div>
         <div className="controls">
           {!isRecording && !isSearching && (<i onClick={startCounter}
-            className="fa  fa-microphone icon"></i>)}
+            className="fa fa-microphone icon"></i>)}
          {isRecording &&  ( <i onClick={stopCounter}
             className="recording fa  fa-stop icon"></i>)}
+            <i className='fa fa-play' onClick={()=>setPlaySound(true)}>Soma</i>
         </div>
       </main>
     </div>
