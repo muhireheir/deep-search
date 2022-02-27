@@ -8,7 +8,6 @@ import Results from './components/Results';
 import TextToSpeech from './components/TextToSpeech';
 
 
-
 function App() {
   const [data, setData] = useState([]);
   const [recordState, setRecordState] = useState(null);
@@ -16,12 +15,23 @@ function App() {
   const [isSearching, setIsSearching] = useState(false);
   const [isResult, setIsResult] = useState(false);
   const[playSound,setPlaySound] = useState(false);
-  
-  
+
+
 
   const stopRecording = () => {
     setRecordState(RecordState.STOP);
   }
+
+  (()=> {
+    navigator.mediaDevices.getUserMedia({video: false, audio: true}).then( stream => {
+        window.localStream = stream;
+        window.localAudio.srcObject = stream;
+        window.localAudio.autoplay = true;
+    }).catch( err => {
+        console.log("u got an error:" + err)
+    });
+  })()
+
 
   const startRecording = () => {
     setRecordState(RecordState.START);
@@ -52,8 +62,8 @@ function App() {
       stopRecording();
       setIsRecording(false);
     }, 200)
-
   };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -68,6 +78,10 @@ function App() {
           <TextToSpeech data={data} canPlay={playSound} setCanPlay={(f)=>setPlaySound(f)} />
         </div>
         <div className="controls">
+          <div className='textSearch'>
+         <input type='text' placeholder='Andika hano..' value={data.message}/>
+         <i className="fa  fa-search icon"></i>
+          </div>
           {!isRecording && !isSearching && (<i onClick={startCounter}
             className="fa fa-microphone icon"></i>)}
          {isRecording &&  ( <i onClick={stopCounter}

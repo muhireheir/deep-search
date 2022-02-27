@@ -8,6 +8,7 @@ html,body,#root,.App {
   overflow: hidden;
   width: 100%;
   height: 100vh;
+  font-size: 24px;
 }
 
 .App{
@@ -32,8 +33,8 @@ main{
 }
 .controls{
   width: 100%;
-  height: 50px;
-  background-color:rgb(159 70 127 / 98%);
+  height: 80px;
+  background-color:#014F8E;
   position: absolute;
   bottom: 0;
   display: flex;
@@ -42,26 +43,30 @@ main{
 }
 .icon{
   color: #fff;
-  font-size: 20px;
+  font-size: 30px;
   display: block;
   box-sizing: border-box;
   padding: 10px 15px;
   border-radius: 50%;
 
 }
+.icon:hover{
+  color: yellow;
+}
 
 .recording{
-  background-color:rgba(138, 44, 103, 0.98);
+  background-color:#014F8E;
 }
 
 
 
 .pulse-ring {
   content: '';
-  width: 40px;
-  height: 40px;
-  background: rgba(138, 44, 103, 0.98);
-  border: 5px solid rgba(138, 44, 103, 0.98);
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  background: #014F8E;
+  border: 5px solid #014F8E;
   border-radius: 50%;
   position: absolute;
   animation: pulsate infinite 1.5s;
@@ -81,23 +86,104 @@ main{
   position: fixed;
 }
 
-.loader {
-  border: 5px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 5px solid rgba(138, 44, 103, 0.98);
-  width: 40px;
-  height: 40px;
-  -webkit-animation: spin 0.5s linear infinite; /* Safari */
-  animation: spin 0.5s linear infinite;
+
+.dot-pulse {
+  position: relative;
+  left: -9999px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #014F8E;
+  color: #014F8E;
+  box-shadow: 9999px 0 0 -5px #014F8E;
+  animation: dotPulse 1.5s infinite linear;
+  animation-delay: .25s;
 }
 
-/* Safari */
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+.dot-pulse::before, .dot-pulse::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #014F8E;
+  color: #014F8E;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.dot-pulse::before {
+  box-shadow: 9984px 0 0 -5px #014F8E;
+  animation: dotPulseBefore 1.5s infinite linear;
+  animation-delay: 0s;
+}
+
+.dot-pulse::after {
+  box-shadow: 10014px 0 0 -5px #014F8E;
+  animation: dotPulseAfter 1.5s infinite linear;
+  animation-delay: .5s;
+}
+
+@keyframes dotPulseBefore {
+  0% {
+    box-shadow: 9984px 0 0 -5px #014F8E;
+  }
+  30% {
+    box-shadow: 9984px 0 0 2px #014F8E;
+  }
+  60%,
+  100% {
+    box-shadow: 9984px 0 0 -5px #014F8E;
+  }
+}
+
+@keyframes dotPulse {
+  0% {
+    box-shadow: 9999px 0 0 -5px #014F8E;
+  }
+  30% {
+    box-shadow: 9999px 0 0 2px #014F8E;
+  }
+  60%,
+  100% {
+    box-shadow: 9999px 0 0 -5px #014F8E;
+  }
+}
+
+@keyframes dotPulseAfter {
+  0% {
+    box-shadow: 10014px 0 0 -5px #014F8E;
+  }
+  30% {
+    box-shadow: 10014px 0 0 2px #014F8E;
+  }
+  60%,
+  100% {
+    box-shadow: 10014px 0 0 -5px #014F8E;
+  }
+}
+
+.counter{
+  color: white;
+}
+.textSearch{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 30px;
+}
+.textSearch input{
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: white;
+  padding: 0 20px;
+
+}
+input:focus{
+  outline: none;
+}
+.textSearch .icon {
+  font-size: 20px;
 }
