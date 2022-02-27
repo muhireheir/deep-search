@@ -45,7 +45,7 @@ function App() {
     dt.append('audio', wavefilefromblob)
     setIsSearching(true);
     setIsRecording(false);
-    const { data } = await axios.post("http://localhost:5000/playSentence", dt);
+    const { data } = await axios.post("https://e539-105-178-33-225.ngrok.io/playSentence", dt);
     console.log('Data from API', data);
     setIsSearching(false);
     setIsResult(true);
