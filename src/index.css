@@ -37,6 +37,10 @@ html,body{
 
 
 }
+canvas.audio-react-recorder__canvas{
+  width: 30px !important;
+
+}
 .controls{
   width: 100%;
   height: 80px;
