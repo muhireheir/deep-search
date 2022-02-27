@@ -71,7 +71,7 @@ function App() {
       <header className="App-header">
         <AudioReactRecorder state={recordState} onStop={onStop} />
       </header>
-      <main>
+      <div className="main">
         <div className='header'></div>
         <div className='output'>
           {isRecording && (<Recording />)}
@@ -90,7 +90,7 @@ function App() {
             className="recording fa  fa-stop icon"></i>)}
             {isResult && <i className='fa fa-play' style={{color:'white'}} onClick={()=>setPlaySound(true)}>Soma</i> }
         </div>
-      </main>
+      </div>
     </div>
   );
 }
