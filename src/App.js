@@ -88,7 +88,7 @@ function App() {
             className="fa fa-microphone icon"></i>)}
          {isRecording &&  ( <i onClick={stopCounter}
             className="recording fa  fa-stop icon"></i>)}
-            <i className='fa fa-play' onClick={()=>setPlaySound(true)}>Soma</i>
+            {isResult && <i className='fa fa-play' style={{color:'white'}} onClick={()=>setPlaySound(true)}>Soma</i> }
         </div>
       </main>
     </div>
