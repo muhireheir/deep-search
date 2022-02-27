@@ -6,6 +6,8 @@ import Recording from './components/Recording';
 import Searching from './components/Searching';
 import Results from './components/Results';
 import TextToSpeech from './components/TextToSpeech';
+import matchContent from './processing';
+
 
 
 function App() {
@@ -47,7 +49,9 @@ function App() {
     console.log('Data from API', data);
     setIsSearching(false);
     setIsResult(true);
-    setData(data);
+    setData(data.message);
+    let res = matchContent(data.message);
+    console.log('res', res);
   }
 
   const startCounter = () => {
