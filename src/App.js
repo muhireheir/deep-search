@@ -45,7 +45,7 @@ function App() {
     dt.append('audio', wavefilefromblob)
     setIsSearching(true);
     setIsRecording(false);
-    const { data } = await axios.post("https://kasukuu-api.vercel.app/playSentence", dt);
+    const { data } = await axios.post("https://kasukuu-api.vercel.app//playSentence", dt);
     console.log('Data from API', data);
     setIsSearching(false);
     setIsResult(true);
