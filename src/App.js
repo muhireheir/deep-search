@@ -32,7 +32,7 @@ function App() {
     }).catch( err => {
         console.log("u got an error:" + err)
     });
-  })()
+  })();
 
 
   const startRecording = () => {
@@ -45,7 +45,7 @@ function App() {
     dt.append('audio', wavefilefromblob)
     setIsSearching(true);
     setIsRecording(false);
-    const { data } = await axios.post("http://localhost:5000/playSentence", dt);
+    const { data } = await axios.post("https://kasukuu-api.vercel.app/playSentence", dt);
     console.log('Data from API', data);
     setIsSearching(false);
     setIsResult(true);
@@ -77,7 +77,7 @@ function App() {
           {isRecording && (<Recording />)}
           {isSearching && (<Searching />)}
           {isResult && <Results data={data} />}
-          <TextToSpeech data={data} canPlay={playSound} setCanPlay={(f)=>setPlaySound(f)} />
+          {/* <TextToSpeech data={data} canPlay={playSound} setCanPlay={(f)=>setPlaySound(f)} /> */}
         </div>
         <div className="controls">
           <div className='textSearch'>
@@ -88,7 +88,7 @@ function App() {
             className="fa fa-microphone icon"></i>)}
          {isRecording &&  ( <i onClick={stopCounter}
             className="recording fa  fa-stop icon"></i>)}
-            {isResult && <i className='fa fa-play' style={{color:'white'}} onClick={()=>setPlaySound(true)}>Soma</i> }
+            {/* {isResult && <i className='fa fa-play' style={{color:'white'}} onClick={()=>setPlaySound(true)}>Soma</i> } */}
         </div>
       </main>
     </div>
